@@ -1,0 +1,11 @@
+
+kafka:
+  clusterName: strimzi
+  kafkaVersion: 3.7.0
+  replicas: 3
+  storageType: persistent-claim
+  StorageSize: 10Gi
+
+zookeeper:
+  strorageType: persistent-claim
+  storageSize: 5Gi

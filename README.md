@@ -1,0 +1,1 @@
+Deploying strimzi kafka with templates

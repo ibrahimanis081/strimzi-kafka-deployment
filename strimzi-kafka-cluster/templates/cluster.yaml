@@ -1,0 +1,46 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: Kafka
+metadata:
+  name: {{ values.kafka.name }}
+spec:
+  kafka:
+    version: {{ values.kafka.version }}
+    replicas: {{ values.kafka.replicas }}
+    listeners:
+      - name: plain
+        port: 9092
+        type: internal
+        tls: false
+      - name: external
+        port: 9093
+        type: loadbalancer
+        tls: true
+        authentication:
+          type: scram-sha-512
+    authorization:
+      type: simple
+      superUsers:
+        - CN=anees
+    config:
+      offsets.topic.replication.factor: 3
+      transaction.state.log.replication.factor: 3
+      transaction.state.log.min.isr: 2
+      default.replication.factor: 3
+      min.insync.replicas: 2
+      inter.broker.protocol.version: "3.7"
+    storage:
+      type: jbod
+      volumes:
+      - id: 0
+        type: {{ values.kafka.storageType }}
+        size: {{ values.kafka.storageSize }}
+        deleteClaim: false
+  zookeeper:
+    replicas: 3
+    storage:
+      type: {{ values.zookeeper.storageType }}
+      size: {{ values.zookeeper.storageSize }}
+      deleteClaim: false
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}
