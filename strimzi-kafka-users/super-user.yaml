@@ -3,7 +3,7 @@ kind: KafkaUser
 metadata:
   name: anees
   labels:
-    strimzi.io/cluster: {{ values.kafka.clusterName }}
+    strimzi.io/cluster: strimzi
 spec:
   authentication:
     type: scram-sha-512
