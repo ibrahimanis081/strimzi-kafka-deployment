@@ -7,5 +7,5 @@ kafka:
   StorageSize: 10Gi
 
 zookeeper:
-  strorageType: persistent-claim
+  storageType: persistent-claim
   storageSize: 5Gi
