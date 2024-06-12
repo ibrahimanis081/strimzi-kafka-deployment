@@ -4,7 +4,7 @@ kafka:
   kafkaVersion: 3.7.0
   replicas: 3
   storageType: persistent-claim
-  StorageSize: 10Gi
+  storageSize: 10Gi
 
 zookeeper:
   storageType: persistent-claim
